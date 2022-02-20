@@ -1,0 +1,22 @@
+.cart-item{
+    display:flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.image{
+    object-fit: contain;
+    width: 180px;
+    height: 180px;
+}
+.info{
+    padding-left: 20px;
+}
+.title{
+    font-size: 17px;
+    font-weight: 800;
+}
+.price{}
+.rating{
+    display: flex;
+    color: darkgoldenrod;
+}
