@@ -4,8 +4,10 @@ import CurrencyFormat from 'react-currency-format';
 import './CartTotal.css';
 import { useStateValue } from '../StateProvider';
 import { TotalCartValue } from './../reducer';
+import { useNavigate } from 'react-router-dom';
 
 function CartTotal() {
+    const navigate = useNavigate();
     const [{basket}, dispatch] = useStateValue();
 
   return (
@@ -28,7 +30,7 @@ function CartTotal() {
         thousandSeparator={true}
         prefix={"$"}
         />
-        <button>Proceed to Checkout</button>
+        <button onClick={e => navigate('/payment')}>Proceed to Checkout</button>
     </div>
   )
 }

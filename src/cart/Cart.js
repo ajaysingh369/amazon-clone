@@ -6,7 +6,7 @@ import CartTotal from './CartTotal';
 import CartItem from './CartItem';
 
 function Cart() {
-    const [{basket}, dispatch] = useStateValue();
+    const [{basket, user}] = useStateValue();
     
     return (
         <>
@@ -15,6 +15,7 @@ function Cart() {
                 <div className='cart-left'>
                     <img className='cart-ad' src='https://images-na.ssl-images-amazon.com/images/G/02/UK_CCMP/TM/OCC_Amazon1._CB423492668_.jpg' alt='' />
                     <div>
+                        <h3>Hello {user?.email}</h3>
                         <h2 className='cart-title'>Your shopping Basket</h2>
                         {basket.map(item => (
                             <CartItem key ={item.id}
