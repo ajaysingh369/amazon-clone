@@ -1,4 +1,4 @@
-import ShoppingBasket from '@mui/icons-material/ShoppingBasket';
+// import ShoppingBasket from '@mui/icons-material/ShoppingBasket';
 import React from 'react';
 import CurrencyFormat from 'react-currency-format';
 import './CartTotal.css';
@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 function CartTotal() {
     const navigate = useNavigate();
-    const [{basket}, dispatch] = useStateValue();
+    const [{basket}] = useStateValue();
 
   return (
     <div className='cart-total'>
