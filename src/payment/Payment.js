@@ -7,6 +7,7 @@ import Header from '../header/Header';
 import { useStateValue } from '../StateProvider';
 import { TotalCartValue } from '../reducer';
 import axios from '../axios';
+import { db } from '../firebase';
 import './Payment.css';
 
 function Payment() {
@@ -33,6 +34,9 @@ function Payment() {
         getClientSecret();
     }, [basket]);
 
+    console.log('The SECRET KEY::', clientSecret);
+    console.log('USER>>>>>', user, db);
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setProcessing(true);
@@ -41,10 +45,25 @@ function Payment() {
                 card: elements.getElement(CardElement),
             }
         }).then(({paymentIntent}) => {
+            console.log('USER2>>>>>', paymentIntent);
             //paymentIntent means payement confirmation
+            db.collection('users')
+            .doc(user?.uid)
+            .collection('orders')
+            .doc(paymentIntent?.id)
+            .set({
+                basket: basket,
+                amount: paymentIntent?.amount,
+                created: paymentIntent?.created
+            })
+
             setSucceeded(true);
             setError(null);
             setProcessing(false);
+
+            dispatch({
+                type: 'EMPTY_CART'
+            });
 
             history('/orders');
         });
