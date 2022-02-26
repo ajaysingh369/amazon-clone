@@ -46,7 +46,7 @@ function Payment() {
             setError(null);
             setProcessing(false);
 
-            history.replace('/orders');
+            history('/orders');
         });
     }
 
