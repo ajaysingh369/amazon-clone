@@ -44,17 +44,17 @@ function Payment() {
             payment_method: {
                 card: elements.getElement(CardElement),
             }
-        }).then(({paymentIntent}) => {
-            console.log('USER2>>>>>', paymentIntent);
+        }).then((res) => {
+            console.log('USER2>>>>>', res, res.error.payment_intent);
             //paymentIntent means payement confirmation
             db.collection('users')
-            .doc(user?.uid)
+            .doc(user.uid)
             .collection('orders')
-            .doc(paymentIntent?.id)
+            .doc(res.error.payment_intent.id)
             .set({
                 basket: basket,
-                amount: paymentIntent?.amount,
-                created: paymentIntent?.created
+                amount: res.error.payment_intent.amount,
+                created: res.error.payment_intent.created
             })
 
             setSucceeded(true);
